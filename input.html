@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>for you ♡</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      min-height: 100vh;
+      background: #fdf6f0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      font-family: 'Lato', sans-serif;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 24px;
+      padding: clamp(2rem, 6vw, 3rem) clamp(1.5rem, 5vw, 2.5rem);
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      border: 1px solid #f0dde0;
+      animation: fadeUp 0.8s ease forwards;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .heart-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1.4rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50%       { transform: scale(1.08); }
+    }
+
+    h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(1.3rem, 4.5vw, 1.6rem);
+      font-weight: 700;
+      color: #8b3a45;
+      margin-bottom: 0.4rem;
+    }
+
+    .sub {
+      font-size: clamp(0.78rem, 2.5vw, 0.85rem);
+      color: #9a7a80;
+      line-height: 1.7;
+      margin-bottom: 2rem;
+    }
+
+    .field-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: #b89aa0;
+      margin-bottom: 0.5rem;
+      display: block;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 0.85rem 1.2rem;
+      border: 1.5px solid #f0dde0;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.88rem, 3vw, 0.95rem);
+      text-align: center;
+      color: #3a2a2d;
+      background: #fdf0f1;
+      outline: none;
+      letter-spacing: 0.04em;
+      margin-bottom: 0.5rem;
+      transition: border-color 0.3s, background 0.3s;
+    }
+
+    input:focus { border-color: #c9606e; background: #fff; }
+    input::placeholder { color: #c9a0a8; }
+
+    .btn {
+      width: 100%;
+      padding: 0.9rem;
+      background: #c9606e;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-family: 'Lato', sans-serif;
+      font-size: clamp(0.88rem, 3vw, 0.95rem);
+      cursor: pointer;
+      letter-spacing: 0.05em;
+      transition: background 0.3s, transform 0.15s;
+    }
+
+    .btn:hover  { background: #8b3a45; }
+    .btn:active { transform: scale(0.97); }
+
+    .hint {
+      margin-top: 0.6rem;
+      margin-bottom: 1.1rem;
+      font-size: 17px;
+      color: #b89aa0;
+      font-style: italic;
+    }
+
+    .divider {
+      margin: 1.5rem 0;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: #e8d0d3;
+      font-size: 0.75rem;
+    }
+
+    .divider::before, .divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: #f0dde0;
+    }
+
+    @keyframes shake {
+      0%,100% { transform: translateX(0); }
+      25%      { transform: translateX(-8px); }
+      75%      { transform: translateX(8px); }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="card">
+    <div class="heart-icon">
+      <svg viewBox="0 0 60 60" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M30 52 C30 52 7 36 7 20 C7 12.5 13 7 20.5 7 C24.8 7 28.5 9.3 30 13 C31.5 9.3 35.2 7 39.5 7 C47 7 53 12.5 53 20 C53 36 30 52 30 52Z" fill="#fbeaf0" stroke="#c9606e" stroke-width="1.5" stroke-linejoin="round"/>
+        <path d="M21 20 C21 17 23 15 26 16" stroke="#f4b8c2" stroke-width="1.2" stroke-linecap="round"/>
+      </svg>
+    </div>
+
+    <h1>sikretong tayo lang nakaka alam🥵🥰</h1>
+    <p class="sub">enter the date of kuann <br/>to open this page</p>
+
+    <label class="field-label">monthsary date</label>
+    <input
+      type="text"
+      id="date"
+      placeholder="e.g.  january 17"
+      autocomplete="off"
+      spellcheck="false"
+    />
+
+    <p class="hint" id="hint">tarungga langga🫣</p>
+
+    <div class="divider">♡</div>
+
+    <button type="button" class="btn" onclick="check()">open ♡</button>
+  </div>
+
+  <script>
+    var correct = "january 12"; // ← change this anytime
+
+    function check() {
+      var input = document.getElementById('date');
+      var hint  = document.getElementById('hint');
+      var typed = input.value.trim().toLowerCase();
+
+      if (typed === correct || typed === "january12") {
+        window.location.href = 'index.html'; // ← goes to your letter
+      } else {
+        input.style.borderColor = '#e24b4a';
+        input.style.background  = '#fff5f5';
+        hint.style.color        = '#c9606e';
+        hint.textContent        = "soss shshhas lala 🥺🥺";
+        input.style.animation   = 'shake 0.4s ease';
+        setTimeout(function() { input.style.animation = ''; }, 400);
+      }
+    }
+
+    document.getElementById('date').addEventListener('input', function() {
+      this.style.borderColor = '';
+      this.style.background  = '';
+      var hint = document.getElementById('hint');
+      hint.style.color   = '';
+      hint.textContent   = 'surebol nana?🫤';
+    });
+
+    document.getElementById('date').addEventListener('keydown', function(e) {
+      if (e.key === 'Enter') check();
+    });
+  </script>
+
+</body>
+</html>
